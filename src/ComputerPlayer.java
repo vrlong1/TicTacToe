@@ -3,8 +3,12 @@ public class ComputerPlayer extends Player {
 
 	@Override
 	void move() {
-		System.out.println("Computer: Automatically calculate my move!");
-		System.out.println("Computer: Board has added my move.");
+		for (int x = 0; x < 3; x++) 
+			for (int y = 0; y <3; y++) 
+				if (Game.getInstance().getCellInfo(x, y) == null) {
+					Game.getInstance().markCell(x, y);
+					return;
+				}
 	}
 
 }
