@@ -1,4 +1,6 @@
 
+
+
 public class Game {
 	
 	private Player[] players = new Player[2];
@@ -21,6 +23,8 @@ public class Game {
 	}
 	
 	private void runGame() {
+		ComputerPlayer computer_player = (ComputerPlayer) players[1];
+		System.out.println(computer_player.generateChallengeMessage());
 		board.drawBoard();
 		Board.GameOverType winner = null;
 		while ((winner = board.getWinner()) == Board.GameOverType.NOT_OVER) {
@@ -51,6 +55,8 @@ public class Game {
 			}
 		}
 		System.out.println("The winner is " + winner);
+		if (winner == Board.GameOverType.HUMAN)
+			System.out.println(computer_player.generateDefeatMessage());
 	}
 	
 	public static Game getInstance() {
