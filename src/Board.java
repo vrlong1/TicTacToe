@@ -1,59 +1,43 @@
 
 public class Board {
 	
-	Turn turn = Turn.HUMAN;
-	
-	// Recursive method that continues until the game has a winner or draws
-	public void runGame() {
-		try {
-			
-			Game.getInstance().getPlayer(turn.getValue()).move();
-			switch(turn) {
-				case HUMAN:
-					turn = Turn.COMPUTER;
-					break;
-				case COMPUTER:
-					turn = Turn.HUMAN;
-					break;
+	public void drawBoard() {
+		
+		Game game = Game.getInstance();
+		
+		String output = "";
+		for (int x = 0; x < 3; x++) {
+			for (int y = 0; y < 3; y++) {
+				Game.Turn player = game.getCellInfo(x, y);
+				String move = (player == Game.Turn.HUMAN ? "X" : player == Game.Turn.COMPUTER ? "O" : " ");
+				output += " " + move + " ";
+				if (y < 2)
+					output += "|"; 
 			}
 			
-			if (!hasWinner())
-				runGame();
-			else
-				concludeGame();
-			
-		} catch (IndexOutOfBoundsException e) {
-			e.printStackTrace();
-		} catch (NumberFormatException e) {
-			e.printStackTrace();
-		} catch (Exception e) {
-			
+			if (x < 2)
+				output += "\r\n---|---|---\r\n";
 		}
-	}
-	
-	private void drawBoard() {	
-	}
-	
-	private void concludeGame() {
 		
+		System.out.println(output);
 	}
 	
-	private boolean hasWinner() {
-		return false;
+	public GameOverType getWinner() {
+		
+		return null;
 	}
 	
-	private enum Turn {
-		 HUMAN(0), COMPUTER(1);
-		 
-		 private int value;
-		 
-		 private Turn(int index) {
-		   this.value = index;
-		 }
-		 
-		 public int getValue() {
-		   return value;
-		 };
+	public enum GameOverType {
+		HUMAN(0), COMPUTER(1), DRAW(2);
+		
+		private int value;
+		private GameOverType(int value) {
+			this.value = value;
+		}
+		
+		public int getValue() {
+			return value;
+		}
 	}
 	
 }
