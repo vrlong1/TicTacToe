@@ -21,14 +21,16 @@ public class Game {
 	}
 	
 	private void runGame() {
-		while (board.getWinner() == null) {
+		board.drawBoard();
+		Board.GameOverType winner = null;
+		while ((winner = board.getWinner()) == Board.GameOverType.NOT_OVER) {
 			try {
-				
-				// Draws the newly updated board
-				board.drawBoard();
 				
 				// Execute current player's turn
 				getPlayer(turn.getValue()).move();
+				
+				// Draws the newly updated board
+				board.drawBoard();
 				
 				// Sets turn to the next player's turn
 				switch(turn) {
@@ -48,6 +50,7 @@ public class Game {
 				
 			}
 		}
+		System.out.println("The winner is " + winner);
 	}
 	
 	public static Game getInstance() {
