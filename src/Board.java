@@ -57,6 +57,16 @@ public class Board {
 		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
 			return game_status;
 		
+		// Bottom left to bottom right
+		game_status = checkWin(2, 0, 0, 1);
+		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
+			return game_status;
+		
+		// Top right to bottom right
+		game_status = checkWin(0, 2, 1, 0);
+		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
+			return game_status;
+		
 		
 		//Determine if board is filled
 		for (int x = 0; x < 3; x++)
