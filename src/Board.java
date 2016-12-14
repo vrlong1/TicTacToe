@@ -1,6 +1,8 @@
-import javafx.util.Pair;
 
 public class Board {
+	
+	private int[][] coordinatesToCheck = {{2, 0, -1, 1}, {1, 0, 0, 1}, {0, 0, 1, 1}, {0, 1, 1, 0}, 
+										  {0, 0, 0, 1}, {0, 0, 1, 0}, {2, 0, 0, 1}, {0, 2, 1, 0}};
 	
 	public void drawBoard() {
 		
@@ -25,48 +27,13 @@ public class Board {
 	
 	public GameOverType getWinner() {
 		GameOverType game_status = GameOverType.NOT_OVER;
-		// Bottom left to top right
-		game_status = checkWin(2, 0, -1, 1);
-		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
-			return game_status;
-			
-		// Middle left to middle right
-		game_status = checkWin(1, 0, 0, 1);
-		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
-			return game_status;
 		
-		// Top left to bottom right
-		game_status = checkWin(0, 0, 1, 1);
-		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
-			return game_status;
-		
-		// Middle top to middle bottom
-		game_status = checkWin(0, 1, 1, 0);
-		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
-			return game_status;
-		
-		//Borders (...but there's a bug here somewhere...)
-		
-		// Top left to top right
-		game_status = checkWin(0, 0, 0, 1);
-		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
-			return game_status;
-		
-		// Top left to bottom left
-		game_status = checkWin(0, 0, 1, 0);
-		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
-			return game_status;
-		
-		// Bottom left to bottom right
-		game_status = checkWin(2, 0, 0, 1);
-		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
-			return game_status;
-		
-		// Top right to bottom right
-		game_status = checkWin(0, 2, 1, 0);
-		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
-			return game_status;
-		
+		// Loop through selected coordinates and directions to check for a winner
+		for (int[] x : coordinatesToCheck) {
+			game_status = checkWin(x[0], x[1], x[2], x[3]);
+			if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER)
+				return game_status;
+		}
 		
 		//Determine if board is filled
 		for (int x = 0; x < 3; x++)
