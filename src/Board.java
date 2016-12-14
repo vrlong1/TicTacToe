@@ -41,7 +41,7 @@ public class Board {
 			return game_status;
 		
 		// Middle top to middle bottom
-		game_status = checkWin(1, 0, 1, 0);
+		game_status = checkWin(0, 1, 1, 0);
 		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
 			return game_status;
 		
