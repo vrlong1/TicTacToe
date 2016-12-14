@@ -25,25 +25,38 @@ public class Board {
 	
 	public GameOverType getWinner() {
 		GameOverType game_status = GameOverType.NOT_OVER;
-		// Bottom left
+		// Bottom left to top right
 		game_status = checkWin(2, 0, -1, 1);
 		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
 			return game_status;
 			
-		// Middle left
+		// Middle left to middle right
 		game_status = checkWin(1, 0, 0, 1);
 		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
 			return game_status;
 		
-		// Top left
+		// Top left to bottom right
 		game_status = checkWin(0, 0, 1, 1);
 		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
 			return game_status;
 		
-		// Middle top
+		// Middle top to middle bottom
 		game_status = checkWin(1, 0, 1, 0);
 		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
 			return game_status;
+		
+		//Borders (...but there's a bug here somewhere...)
+		
+		// Top left to top right
+		game_status = checkWin(0, 0, 0, 1);
+		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
+			return game_status;
+		
+		// Top left to bottom left
+		game_status = checkWin(0, 0, 1, 0);
+		if (game_status == GameOverType.HUMAN || game_status == GameOverType.COMPUTER) 
+			return game_status;
+		
 		
 		//Determine if board is filled
 		for (int x = 0; x < 3; x++)
