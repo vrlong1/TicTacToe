@@ -44,6 +44,14 @@ public class Board {
 		return GameOverType.DRAW;
 	}
 	
+	/*
+	 * @param x - X coordinate
+	 * @param y - Y coordinate
+	 * @param dx - Change in X coordinate
+	 * @param dy - Change in Y coordinate
+	 * Checks for a winner starting from original coordinates and checking the next cell through dx and dy. Returns a GameOverType to keep track of the
+	 * current win status. 
+	 */
 	private GameOverType checkWin(int x, int y, int dx, int dy) {
 		Game.Turn player = Game.getInstance().getCellInfo(x, y);
 		if (player == null)
