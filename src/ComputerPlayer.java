@@ -21,6 +21,12 @@ public class ComputerPlayer extends Player {
 	
 	@Override
 	void move() {
+		/*Goals:
+		 * block human player when human is about to win
+		 * generate random available cell to mark
+		 */
+		blockCheck();
+		//Marks the first available cell
 		for (int x = 0; x < 3; x++) 
 			for (int y = 0; y <3; y++) 
 				if (Game.getInstance().getCellInfo(x, y) == null) {
@@ -30,6 +36,12 @@ public class ComputerPlayer extends Player {
 				}
 	}
 	
+	void blockCheck() {
+		
+		return;
+	}
+	
+	//Generate messages for challenge, battle, defeat
 	String generateChallengeMessage() {
 		String chosenMessage = challengeStatements[(int) (Math.random() * challengeStatements.length)];
 		return chosenMessage;
