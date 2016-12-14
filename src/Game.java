@@ -51,7 +51,7 @@ public class Game {
 			} catch (NumberFormatException e) {
 				e.printStackTrace();
 			} catch (Exception e) {
-				
+				e.printStackTrace();
 			}
 		}
 		System.out.println("The winner is " + winner);
@@ -61,6 +61,10 @@ public class Game {
 	
 	public static Game getInstance() {
 		return game;
+	}
+	
+	public Board getBoard() {
+		return board;
 	}
 	
 	public void setup() {
