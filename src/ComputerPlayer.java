@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import java.awt.List;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
 import javafx.util.Pair;
+=======
+
+
+>>>>>>> parent of bf501d2... - Start on logic for detecting imminent player win. Recommend swapping to building an array and checking if human player count in a row is 2 and finding the coordinate of the null box.
 
 public class ComputerPlayer extends Player {
 	private String[] challengeStatements = {
@@ -33,11 +38,12 @@ public class ComputerPlayer extends Player {
 			/* Bottom right to top right */ {2, 2, -1, 0}};
 	
 	@Override
-	public void move() {
+	void move() {
 		/*Goals:
 		 * block human player when human is about to win
 		 * generate random available cell to mark
 		 */
+<<<<<<< HEAD
 		Pair<Integer, Integer> block_coordinate = blockCheck();
 		if (block_coordinate != null) {
 			System.out.println("BLOCKED!");
@@ -45,6 +51,9 @@ public class ComputerPlayer extends Player {
 			System.out.println(generateBattleMessage());
 			return;
 		}
+=======
+		blockCheck();
+>>>>>>> parent of bf501d2... - Start on logic for detecting imminent player win. Recommend swapping to building an array and checking if human player count in a row is 2 and finding the coordinate of the null box.
 		//Marks the first available cell
 		for (int x = 0; x < 3; x++) 
 			for (int y = 0; y <3; y++) 
@@ -55,6 +64,7 @@ public class ComputerPlayer extends Player {
 				}
 	}
 	
+<<<<<<< HEAD
 	// Runs through each coordinate and direction to check for a player getting close to a win. Returns a coordinate to block if the player is close to winning.
 	private Pair<Integer, Integer> blockCheck() {
 		// Top left to top right --
@@ -111,6 +121,11 @@ public class ComputerPlayer extends Player {
 			return null;
 		
 		return emptyCellCoordinate;
+=======
+	void blockCheck() {
+		
+		return;
+>>>>>>> parent of bf501d2... - Start on logic for detecting imminent player win. Recommend swapping to building an array and checking if human player count in a row is 2 and finding the coordinate of the null box.
 	}
 	
 	//Generate messages for challenge, battle, defeat
